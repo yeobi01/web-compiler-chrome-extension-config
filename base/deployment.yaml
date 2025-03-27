@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compile-deployment
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: compile
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: compile
+    spec:
+      containers:
+        - image: yeobi/compile-server
+          imagePullPolicy: Always
+          name: yeobi-compile
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: yeobi
+resources:
+  - namespace.yaml
+  - ../../base
+patches:
+  - path: domain.json
+    target:
+      kind: Ingress
+      name: compile-ingress
+images:
+  - name: yeobi/compile-server
+    newTag: 59911c87f6fbc502c20cd9cf8a8c58f98c1d3229d7344aefb4659e0d8e8b8a05
